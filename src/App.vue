@@ -89,6 +89,6 @@ html {
   animation-timing-function: ease;
   animation-iteration-count: infinite;
   width: 300px;
-  filter: invert(36%) sepia(83%) saturate(2042%) hue-rotate(295deg) brightness(100%) contrast(87%);
+  filter: invert(62%) sepia(81%) saturate(7499%) hue-rotate(310deg) brightness(100%) contrast(98%);
 }
 </style>
