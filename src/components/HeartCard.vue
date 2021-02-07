@@ -1,8 +1,8 @@
 <template>
   <div class="heart__bg">
     <div class="heart__content">
-      <h1 class="heart__title">{{ msg[0] }}</h1>
-      <div class="heart__img">
+      <h1 v-if="clicked" class="heart__title" @click="clicked = false">{{ msg[0] }}</h1>
+      <div v-else class="heart__img" @click="clicked = true">
         <svg
           version="1.1"
           id="Layer_1"
@@ -34,6 +34,7 @@ export default {
   data: () => {
     return {
       msg: ["I love you baby"],
+      clicked: false,
     };
   },
 };
@@ -55,6 +56,7 @@ export default {
   padding: 1em;
   font-size: 24px;
   color: #d31c99;
+  cursor: pointer;
 }
 
 .heart__img svg {
@@ -78,6 +80,7 @@ export default {
   animation-timing-function: ease;
   animation-iteration-count: infinite;
   width: 250px;
+  cursor: pointer;
 }
 
 @keyframes showAnimation {
