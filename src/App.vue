@@ -1,22 +1,12 @@
 <template>
   <div id="app">
-    <HeartCard :msg="msg[0]" />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HeartCard from "./components/HeartCard.vue";
-
 export default {
   name: "App",
-  components: {
-    HeartCard,
-  },
-  data: () => {
-    return {
-      msg: ["I love you baby"],
-    };
-  },
 };
 </script>
 

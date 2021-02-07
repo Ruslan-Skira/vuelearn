@@ -1,7 +1,7 @@
 <template>
   <div class="heart__bg">
     <div class="heart__content">
-      <h1 class="heart__title">{{ msg }}</h1>
+      <h1 class="heart__title">{{ msg[0] }}</h1>
       <div class="heart__img">
         <svg
           version="1.1"
@@ -29,7 +29,12 @@
 export default {
   name: "HeartCard",
   props: {
-    msg: String,
+    message: String,
+  },
+  data: () => {
+    return {
+      msg: ["I love you baby"],
+    };
   },
 };
 </script>
