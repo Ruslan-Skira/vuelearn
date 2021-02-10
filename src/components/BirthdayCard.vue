@@ -10,15 +10,6 @@
 <script>
 export default {
   name: "BirthdayCard",
-  props: {
-    message: String,
-  },
-  data: () => {
-    return {
-      msg: ["I love you baby"],
-      clicked: false,
-    };
-  },
   mounted() {
     let canvas = document.getElementById("birthday-canvas");
     let ctx = canvas.getContext("2d");
