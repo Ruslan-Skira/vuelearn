@@ -1,8 +1,8 @@
-import NavLinks from "./components/NavLinks.vue";
-import HeartCard from "./components/HeartCard.vue";
-
 import Vue from "vue";
 import VueRouter from "vue-router";
+import NavLinks from "../components/NavLinks.vue";
+import HeartCard from "../views/ValentinesPage.vue";
+import BirthdayPage from "../views/BirthdayPage.vue";
 
 Vue.use(VueRouter);
 
@@ -14,6 +14,10 @@ export const routes = [
   {
     path: "/valentine",
     component: HeartCard,
+  },
+  {
+    path: "/birthday",
+    component: BirthdayPage,
   },
 ];
 
