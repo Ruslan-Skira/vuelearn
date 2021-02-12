@@ -1,7 +1,7 @@
 <template>
   <div class="heart__bg">
     <div class="heart__content">
-      <h1 v-if="clicked" class="heart__title" @click="clicked = false">{{ msg[0] }}</h1>
+      <h1 v-if="clicked" class="heart__title" @click="clicked = false">{{ message }}</h1>
       <div v-else class="heart__img" @click="clicked = true">
         <svg
           version="1.1"
@@ -33,7 +33,6 @@ export default {
   },
   data: () => {
     return {
-      msg: ["I love you baby"],
       clicked: false,
     };
   },

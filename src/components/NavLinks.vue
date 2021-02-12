@@ -1,7 +1,11 @@
 <template>
   <div class="links">
-    <router-link to="/valentine">Create Valentine Card</router-link>
-    <router-link to="/birthday">Create Birthday Card</router-link>
+    <div>
+      <router-link to="/create-valentine">Create Valentine Card</router-link>
+    </div>
+    <div>
+      <router-link to="/birthday">Create Birthday Card</router-link>
+    </div>
   </div>
 </template>
 
