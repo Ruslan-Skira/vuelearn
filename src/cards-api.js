@@ -2,7 +2,7 @@ import { firestore } from "./firebase-db";
 import { autoId } from "./helpers/autoId";
 
 export async function addCard(card) {
-  const id = autoId();
+  const id = autoId(14);
   const cardRef = firestore.collection("cards").doc(id);
   if (!cardRef) {
     console.log("initialize signals first");

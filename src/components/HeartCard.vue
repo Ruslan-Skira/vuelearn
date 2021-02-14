@@ -23,9 +23,13 @@
       <div v-if="step === 1">
         {{ sender ? "" : next() }}
         <h1 class="heart__title">{{ tr("valentine_guessTitle") }}:</h1>
-        <v-text-field :label="tr('createValentinePage_fromInputLabel')" @keyup="nameChanged"></v-text-field>
+        <v-text-field
+          v-model="name"
+          :label="tr('createValentinePage_fromInputLabel')"
+          @keyup="nameChanged"
+        ></v-text-field>
         <div :class="{ 'secondary-text try-text': true, visible: tryAgain }">
-          {{ tr("valentine_guessWrong") }}
+          {{ helpMessage }}
         </div>
       </div>
       <div v-if="step === 2" class="centered">
@@ -48,6 +52,10 @@
             </g>
           </svg>
         </div>
+        <audio v-if="audio" autoplay>
+          <source :src="audio" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
         <div class="heart__title" @click="clicked = false" v-html="message"></div>
         <div v-if="sender" class="sender">{{ sender }}</div>
       </div>
@@ -63,12 +71,32 @@ export default {
   props: {
     message: String,
     sender: String,
+    audio: String,
   },
   data: () => {
     return {
+      name: "",
       step: 0,
       tryAgain: false,
+      counter: 0,
     };
+  },
+  computed: {
+    helpMessage() {
+      if (this.counter < 2) {
+        return this.tr("valentine_guessHelp_1");
+      } else if (this.counter < 4) {
+        return this.tr("valentine_guessHelp_2");
+      } else if (this.counter < 5) {
+        return this.tr("valentine_guessHelp_3");
+      } else if (this.counter < 6) {
+        return this.tr("valentine_guessHelp_4");
+      } else if (this.counter < 7) {
+        return this.tr("valentine_guessHelp_5");
+      } else {
+        return this.tr("valentine_guessHelp_6");
+      }
+    },
   },
   methods: {
     tr,
@@ -87,7 +115,13 @@ export default {
           this.next();
           this.$emit("guessed");
         } else {
+          this.counter = this.counter + 1;
           this.tryAgain = true;
+          if (this.counter > 5 && this.name.charAt(0) !== this.sender.charAt(0)) {
+            this.name = this.sender.slice(0, 1);
+          } else if (this.counter > 10) {
+            this.next();
+          }
         }
       }, 400);
     },
@@ -105,7 +139,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ff7ed6;
+  background: #ff9bdf;
 }
 
 .centered {
@@ -132,6 +166,10 @@ export default {
   font-weight: 400;
 
   cursor: pointer;
+
+  @media (max-width: 500px) {
+    font-size: 30px;
+  }
 }
 
 .secondary-text {
@@ -154,6 +192,10 @@ export default {
   font-size: 36px;
   font-family: "Caveat", cursive;
   font-weight: 400;
+
+  @media (max-width: 500px) {
+    font-size: 30px;
+  }
 }
 
 .heart__img svg {
@@ -166,9 +208,6 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  animation-duration: 2s;
-  animation-name: showAnimation;
-  animation-timing-function: ease;
 }
 
 .heart__img {

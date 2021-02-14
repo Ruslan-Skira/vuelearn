@@ -1,5 +1,11 @@
 <template>
-  <HeartCard v-if="card" :message="card.message" :sender="card.sender" @guessed="guessed" />
+  <HeartCard
+    v-if="card"
+    :audio="card.audio ? require('./Surf_Mesa_Ili_I_love_you_baby.mp3') : ''"
+    :message="card.message"
+    :sender="card.sender"
+    @guessed="guessed"
+  />
   <div v-else-if="!loading">
     <p>Unable to find Valentine</p>
     <v-btn href="/create-valentine" color="primary">Create new</v-btn>
@@ -26,6 +32,7 @@ export default {
         if (card) {
           this.card = {
             id: card.id,
+            audio: card.audio,
             message: decode(card.message),
             sender: decode(card.sender),
             receiver: decode(card.receiver),

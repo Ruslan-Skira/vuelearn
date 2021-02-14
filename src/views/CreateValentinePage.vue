@@ -14,6 +14,7 @@
           <p>{{ tr("createValentinePage_ifAnonimus") }}</p>
           <v-text-field :label="tr('createValentinePage_fromInputLabel')" max="100" v-model="sender"></v-text-field>
           <v-text-field :label="tr('createValentinePage_toInputLabel')" max="200" v-model="receiver"></v-text-field>
+          <v-checkbox v-model="audio" :label="`Audio ${audio ? 'on' : 'off'}`"></v-checkbox>
           <div>
             <v-btn class="create-button" color="primary" @click="onSubmit" :disabled="!message">
               {{ tr("createValentinePage_createBtn") }}
@@ -50,6 +51,7 @@ export default {
   data: () => ({
     message: "",
     sender: "",
+    audio: true,
     receiver: "",
     link: "",
     copied: false,
@@ -93,6 +95,7 @@ export default {
         message: encode(this.message),
         sender: encode(this.sender),
         receiver: encode(this.receiver),
+        audio: audio,
       }).then((card) => {
         this.card = card;
         this.link = window.location.origin + "/valentine/" + card.id;
