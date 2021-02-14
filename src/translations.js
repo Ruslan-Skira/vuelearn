@@ -25,7 +25,7 @@ export const translations = {
     createValentinePage_chooseExisting: "Или выберите из следующих",
     createValentinePage_createBtn: "Создать",
     createValentinePage_messageInputLabel: "Ваше пожелание",
-    createValentinePage_fromInputLabel: "Имя от кого",
+    createValentinePage_fromInputLabel: "Имя, от кого",
     createValentinePage_toInputLabel: "Укажите кому (номер телефона, Facebook...)",
     createValentinePage_ifAnonimus: "Если хотите чтобы человек отгадал от кого валентинка, заполните поля ниже",
     createValentinePage_created: "Ваша валентинка создана",

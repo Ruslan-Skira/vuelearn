@@ -96,6 +96,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import url("https://fonts.googleapis.com/css?family=Caveat&display=swap");
+
 .heart__bg {
   flex: 1;
   width: 100%;
@@ -122,8 +124,12 @@ export default {
 .heart__title {
   margin: 0;
   padding: 16px;
-  font-size: 24px;
+  font-size: 36px;
   color: #d31c99;
+
+  font-family: "Caveat", cursive;
+  font-weight: 400;
+
   cursor: pointer;
 }
 
@@ -140,10 +146,13 @@ export default {
 }
 
 .sender {
-  color: #6f0b4f;
+  color: #d31c99;
   padding: 16px;
   text-align: right;
   width: 100%;
+  font-size: 36px;
+  font-family: "Caveat", cursive;
+  font-weight: 400;
 }
 
 .heart__img svg {

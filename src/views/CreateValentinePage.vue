@@ -31,7 +31,7 @@
       <div v-else>
         <p>{{ tr("createValentinePage_created") }}</p>
         <v-btn @click="copyTextToClipboard(link)" color="primary">Copy Link</v-btn>
-        <p>{{ link }}</p>
+        <p class="break-all">{{ link }}</p>
         <p><br /></p>
         <a :href="link">see your Valentine</a>
       </div>
@@ -53,21 +53,21 @@ export default {
     receiver: "",
     link: "",
     copied: false,
+    card: null,
     messages,
   }),
   methods: {
     tr,
     onSubmit() {
-      const msg = encode(this.message);
-      const s = encode(this.sender);
-      console.log(msg, s);
-      const params = { msg, s };
-      const queryString = Object.keys(params)
-        .map((key) => {
-          return encodeURIComponent(key) + "=" + encodeURIComponent(params[key]);
-        })
-        .join("&");
-      this.link = window.location.origin + "/valentine?" + queryString;
+      // const msg = encode(this.message);
+      // const s = encode(this.sender);
+      // const params = { msg, s };
+      // const queryString = Object.keys(params)
+      //   .map((key) => {
+      //     return encodeURIComponent(key) + "=" + encodeURIComponent(params[key]);
+      //   })
+      //   .join("&");
+      // this.link = window.location.origin + "/valentine?" + queryString;
 
       this.saveCard();
       // this.$router.push({ path: "/valentine", query: { msg, s } });
@@ -89,7 +89,14 @@ export default {
       this.copied = true;
     },
     saveCard() {
-      addCard({ link: this.link, message: this.message, sender: this.sender, receiver: this.receiver });
+      addCard({
+        message: encode(this.message),
+        sender: encode(this.sender),
+        receiver: encode(this.receiver),
+      }).then((card) => {
+        this.card = card;
+        this.link = window.location.origin + "/valentine/" + card.id;
+      });
     },
   },
 };
@@ -119,6 +126,10 @@ export default {
   color: #555;
   font-size: 2em;
   margin: 0.5em 0;
+}
+
+.break-all {
+  word-break: break-all;
 }
 
 .wrapper {
