@@ -15,10 +15,12 @@ export const routes = [
   {
     path: "/valentine",
     component: ValentinesPage,
+    meta: { title: "Valentine" },
   },
   {
     path: "/valentine/:id",
     component: ValentinesPage,
+    meta: { title: "Valentine" },
   },
   {
     path: "/create-valentine",
@@ -30,4 +32,15 @@ export const routes = [
   },
 ];
 
-export default new VueRouter({ routes, mode: "history" });
+const router = new VueRouter({ routes, mode: "history" });
+
+const DEFAULT_TITLE = "Gift Card";
+router.afterEach((to) => {
+  // Use next tick to handle router history correctly
+  // see: https://github.com/vuejs/vue-router/issues/914#issuecomment-384477609
+  Vue.nextTick(() => {
+    document.title = to.meta.title || DEFAULT_TITLE;
+  });
+});
+
+export default router;

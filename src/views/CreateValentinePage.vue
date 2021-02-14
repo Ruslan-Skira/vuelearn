@@ -129,6 +129,8 @@ export default {
 
 .page {
   padding: 60px 16px 16px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .create-button {

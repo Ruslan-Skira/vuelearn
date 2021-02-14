@@ -79,8 +79,11 @@ export default {
       const name = e.target.value;
       this.tryAgain = false;
       clearTimeout(this.timer);
+      if (!name) {
+        return;
+      }
       this.timer = setTimeout(() => {
-        if (name === this.sender) {
+        if (this.sender && name.toLowerCase() === this.sender.toLowerCase()) {
           this.next();
         } else {
           this.tryAgain = true;
