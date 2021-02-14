@@ -85,6 +85,7 @@ export default {
       this.timer = setTimeout(() => {
         if (this.sender && name.toLowerCase() === this.sender.toLowerCase()) {
           this.next();
+          this.$emit("guessed");
         } else {
           this.tryAgain = true;
         }

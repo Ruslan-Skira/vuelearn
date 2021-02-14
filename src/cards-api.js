@@ -12,6 +12,15 @@ export async function addCard(card) {
   return data;
 }
 
+export async function guessedCard(id) {
+  const cardRef = firestore.collection("cards").doc(id);
+  if (!cardRef) {
+    console.log("initialize signals first");
+  }
+  const data = { status: "guessed", dateGuessed: new Date().toISOString() };
+  await cardRef.set(data, { merge: true });
+}
+
 export async function getCardById(cardId) {
   const doc = await firestore
     .collection("cards")

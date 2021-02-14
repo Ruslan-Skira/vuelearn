@@ -1,5 +1,5 @@
 <template>
-  <HeartCard v-if="card" :message="card.message" :sender="card.sender" />
+  <HeartCard v-if="card" :message="card.message" :sender="card.sender" @guessed="guessed" />
   <div v-else-if="!loading">
     <p>Unable to find Valentine</p>
     <v-btn href="/create-valentine" color="primary">Create new</v-btn>
@@ -8,7 +8,7 @@
 
 <script>
 import HeartCard from "../components/HeartCard";
-import { getCardById } from "../cards-api";
+import { getCardById, guessedCard } from "../cards-api";
 import { decode } from "js-base64";
 
 export default {
@@ -38,6 +38,11 @@ export default {
   },
   components: {
     HeartCard,
+  },
+  methods: {
+    guessed() {
+      guessedCard(this.card.id);
+    },
   },
 };
 </script>
