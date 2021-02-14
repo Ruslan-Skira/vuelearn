@@ -12,7 +12,13 @@ const messages = {
     "Walking down the aisle with you was incredible, but it’s even better to walk with you through life. Happy Valentine’s Day!",
     "Happy Valentine’s Day to my love! I am proud of you and everything you do. You are the love of my life, and I am forever grateful for all that we share.",
   ],
-  ru: ["Я люблю тебя", "Без тебя всегда скучаю", "Поздравляю и целую, много, много, много раз!"],
+  ru: [
+    "Я люблю тебя",
+    "Без тебя всегда скучаю",
+    "Поздравляю и целую, много, много, много раз!",
+    "Ты люби и будь любима <br />В День Святого Валентина!",
+    "Наша дружба – то, что надо! <br />Я очень рада, когда ты рядом!",
+  ],
 };
 
 export default messages[lang];

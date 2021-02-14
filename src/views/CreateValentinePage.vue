@@ -5,12 +5,15 @@
         <div class="title">{{ tr("createValentinePage_createYourMessage") }}:</div>
         <div>
           <v-textarea
-            :label="tr('createValentinePage_messageInputLabel')"
+            :label="tr('createValentinePage_messageInputLabel') + ' *'"
             auto-grow
             rows="1"
+            max="400"
             v-model="message"
           ></v-textarea>
-          <v-text-field :label="tr('createValentinePage_fromInputLabel')" required v-model="sender"></v-text-field>
+          <p>{{ tr("createValentinePage_ifAnonimus") }}</p>
+          <v-text-field :label="tr('createValentinePage_fromInputLabel')" max="100" v-model="sender"></v-text-field>
+          <v-text-field :label="tr('createValentinePage_toInputLabel')" max="200" v-model="receiver"></v-text-field>
           <div>
             <v-btn class="create-button" color="primary" @click="onSubmit" :disabled="!message">
               {{ tr("createValentinePage_createBtn") }}
@@ -21,14 +24,14 @@
         <div class="title">{{ tr("createValentinePage_chooseExisting") }}:</div>
         <ol class="message-list">
           <li v-for="(msg, index) in messages" :key="index">
-            <div class="message-list__link" @click="chooseMessage(msg)">{{ msg }}</div>
+            <div class="message-list__link" @click="chooseMessage(msg)" v-html="msg"></div>
           </li>
         </ol>
       </div>
       <div v-else>
-        <p>{{ tr("createValentinePage_copyLink") }}</p>
+        <p>{{ tr("createValentinePage_created") }}</p>
         <p>{{ link }}</p>
-        <a :href="link">link</a>
+        <a :href="link">see your Valentine</a>
       </div>
     </div>
   </div>
@@ -38,13 +41,17 @@
 import messages from "../messages.js";
 import { encode } from "js-base64";
 import { tr } from "../translations";
+import { addCard } from "../cards-api";
 
 export default {
   name: "CreateValentinePage",
   data: () => ({
     message: "",
     sender: "",
+    receiver: "",
     link: "",
+    copied: false,
+    card: null,
     messages,
   }),
   methods: {
@@ -60,10 +67,19 @@ export default {
         })
         .join("&");
       this.link = window.location.origin + "/valentine?" + queryString;
+
+      this.card = this.saveCard();
       // this.$router.push({ path: "/valentine", query: { msg, s } });
     },
     chooseMessage(msg) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
       this.message = msg;
+    },
+    saveCard() {
+      return addCard({ link: this.link, message: this.message, sender: this.sender, receiver: this.receiver });
     },
   },
 };

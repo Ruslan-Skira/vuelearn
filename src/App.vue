@@ -51,6 +51,6 @@ h1 {
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  opacity: 0.5;
+  opacity: 0.3;
 }
 </style>

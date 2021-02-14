@@ -29,8 +29,7 @@
         </div>
       </div>
       <div v-if="step === 2" class="centered">
-        <span v-if="!!sender" class="secondary-text">{{ tr("valentine_guessRight") }}</span>
-        <div class="heart__img heart__img--small" @click="next">
+        <div class="heart__img heart__img--small">
           <svg
             version="1.1"
             id="Layer_1"
@@ -49,7 +48,8 @@
             </g>
           </svg>
         </div>
-        <h1 class="heart__title" @click="clicked = false">{{ message }}</h1>
+        <div class="heart__title" @click="clicked = false" v-html="message"></div>
+        <div v-if="sender" class="sender">{{ sender }}</div>
       </div>
     </div>
   </div>
@@ -118,7 +118,7 @@ export default {
 
 .heart__title {
   margin: 0;
-  padding: 1em;
+  padding: 16px;
   font-size: 24px;
   color: #d31c99;
   cursor: pointer;
@@ -134,6 +134,13 @@ export default {
   &.visible {
     opacity: 1;
   }
+}
+
+.sender {
+  color: #6f0b4f;
+  padding: 16px;
+  text-align: right;
+  width: 100%;
 }
 
 .heart__img svg {
@@ -161,6 +168,7 @@ export default {
 
   &--small {
     width: 50px;
+    cursor: default;
   }
 }
 
