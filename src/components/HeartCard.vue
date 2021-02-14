@@ -53,6 +53,7 @@ export default {
 .heart__title {
   margin: 0;
   padding: 1em;
+  max-width: 600px;
   font-size: 24px;
   color: #d31c99;
   cursor: pointer;
