@@ -28,7 +28,7 @@ export const translations = {
     createValentinePage_fromInputLabel: "Имя от кого",
     createValentinePage_toInputLabel: "Укажите кому (номер телефона, Facebook...)",
     createValentinePage_ifAnonimus: "Если хотите чтобы человек отгадал от кого валентинка, заполните поля ниже",
-    createValentinePage_created: "Ваша валентинка отправляется",
+    createValentinePage_created: "Ваша валентинка создана",
     valentine_guessTitle: "Отгадай, кто её прислал",
     valentine_guessWrong: "Не верно, попробуй еще раз",
     valentine_guessRight: "Верно!",

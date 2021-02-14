@@ -30,7 +30,9 @@
       </div>
       <div v-else>
         <p>{{ tr("createValentinePage_created") }}</p>
+        <v-btn @click="copyTextToClipboard(link)" color="primary">Copy Link</v-btn>
         <p>{{ link }}</p>
+        <p><br /></p>
         <a :href="link">see your Valentine</a>
       </div>
     </div>
@@ -51,7 +53,6 @@ export default {
     receiver: "",
     link: "",
     copied: false,
-    card: null,
     messages,
   }),
   methods: {
@@ -68,18 +69,27 @@ export default {
         .join("&");
       this.link = window.location.origin + "/valentine?" + queryString;
 
-      this.card = this.saveCard();
+      this.saveCard();
       // this.$router.push({ path: "/valentine", query: { msg, s } });
     },
     chooseMessage(msg) {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
       this.message = msg;
     },
+    copyTextToClipboard(str) {
+      const el = document.createElement("textarea");
+      el.value = str;
+      el.setAttribute("readonly", "");
+      el.style.position = "absolute";
+      el.style.left = "-9999px";
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el);
+
+      this.copied = true;
+    },
     saveCard() {
-      return addCard({ link: this.link, message: this.message, sender: this.sender, receiver: this.receiver });
+      addCard({ link: this.link, message: this.message, sender: this.sender, receiver: this.receiver });
     },
   },
 };
